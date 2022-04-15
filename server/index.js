@@ -13,6 +13,7 @@ app.get('', async (req, res) => {
     const q = req.query.q?.toLowerCase() || '';
     const data = converted.filter(d => d.Campaign.toLowerCase().includes(q));
 
+    // Limit to 1000
     res.send(data.slice(0, 1000));
 
 });
