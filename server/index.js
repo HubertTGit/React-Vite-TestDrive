@@ -11,11 +11,20 @@ app.use(express.json());
 // Endpoint to search
 app.get('/', async (req, res) => {
     const converted = await csvtojson().fromFile('data.csv');
-    const q = req.query.q?.toLowerCase() || '';
-    const limit = req.query.limit || 1000;
-    const dataSource = req.query.dataSource?.toLowerCase() || '';
-    const campaign = req.query.campaign?.toLowerCase() || '';
-    const data = converted.filter(d => d.Campaign.toLowerCase().includes(q));
+    const limit = +req.query.limit || 1000;
+    const datasource = req.query.datasource?.toLowerCase() || undefined;
+    const campaign = req.query.campaign?.toLowerCase() || undefined;
+    const data = converted.filter(d => {
+        if (campaign || datasource) {
+            return d.Campaign.toLowerCase().includes(campaign) || d.Datasource.toLowerCase().includes(datasource)
+        }
+
+        if (campaign && datasource) {
+            return d.Campaign.toLowerCase().includes(campaign) && d.Datasource.toLowerCase().includes(datasource)
+        }
+        return true
+
+    });
 
     console.log(req.query)
     // Limit to 1000
@@ -36,7 +45,6 @@ app.get('/datasource', async (req, res, next) => {
 app.get('/campaign', async (req, res, next) => {
     try {
         const converted = await csvtojson().fromFile('data.csv');
-        converted.slice(0, 1000);
         const mapped = converted.map(g => {
             let _l = 5;
 
@@ -51,9 +59,9 @@ app.get('/campaign', async (req, res, next) => {
             return g;
         });
 
-        const grouped = _.groupBy(converted, 'Campaign');
+        const grouped = _.groupBy(mapped, 'Campaign');
         const keysOnly = Object.keys(grouped).sort();
-        console.log(keysOnly)
+        keysOnly.splice(0, 1)
 
         res.send(keysOnly);
     } catch (error) {

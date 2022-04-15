@@ -11,7 +11,6 @@ import {
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { IData } from '../interfaces/data.model';
-import { generateRandomNumbers } from './../utilities/utility';
 import { groupBy, values, meanBy } from 'lodash';
 import * as dayJs from "dayjs";
 
@@ -38,7 +37,6 @@ const options = {
     },
 };
 
-// const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 
 
@@ -52,7 +50,7 @@ export const Chart = () => {
 
     const getDatas = async () => {
         const response = await fetch(
-            'http://localhost:8080?' + new URLSearchParams({ q: 'africa' })
+            'http://localhost:8080?' + new URLSearchParams({ limit: "300" })
         );
         const data: IData[] = await response.json();
         const mapped = data.map(f => {
