@@ -11,9 +11,9 @@ app.use(express.json());
 app.get('', async (req, res) => {
     const converted = await csvtojson().fromFile('data.csv');
     const q = req.query.q?.toLowerCase() || '';
-    const data = converted.filter(d => d.Datasource.toLowerCase().includes(q));
+    const data = converted.filter(d => d.Campaign.toLowerCase().includes(q));
 
-    res.send(data);
+    res.send(data.slice(0, 1000));
 
 });
 
