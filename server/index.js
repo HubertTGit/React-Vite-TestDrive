@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 
-// Endpoint to search
+// Endpoint for the data with filtering
 app.get('/', async (req, res) => {
     const converted = await csvtojson().fromFile('data.csv');
     const limit = +req.query.limit || 1000;
@@ -31,6 +31,7 @@ app.get('/', async (req, res) => {
     res.send(data.slice(0, limit));
 });
 
+// get list of available datasources
 app.get('/datasource', async (req, res, next) => {
     try {
         const converted = await csvtojson().fromFile('data.csv');
@@ -42,6 +43,7 @@ app.get('/datasource', async (req, res, next) => {
     }
 });
 
+// get list of available campaigns
 app.get('/campaign', async (req, res, next) => {
     try {
         const converted = await csvtojson().fromFile('data.csv');
