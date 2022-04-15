@@ -2,6 +2,6 @@ export interface IData {
     Date: string;
     Datasource: string;
     Campaign: string;
-    Clicks: number;
-    Impressions: number;
+    Clicks: string | number;
+    Impressions: string | number;
 }
