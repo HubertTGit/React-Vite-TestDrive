@@ -50,14 +50,15 @@ export const Chart = () => {
 
     const getDatas = async () => {
         const response = await fetch(
-            'http://localhost:8080?' + new URLSearchParams({ limit: "300" })
+            'http://localhost:8080?' + new URLSearchParams({ limit: "5000" })
         );
         const data: IData[] = await response.json();
         const mapped = data.map(f => {
-            f.Clicks = parseInt(f.Clicks as string);
-            f.Impressions = parseInt(f.Impressions as string);
+            f.Clicks = Math.trunc(+f.Clicks);
+            f.Impressions = Math.trunc(+f.Impressions);
             return f;
-        })
+        });
+
         setData(mapped);
     };
 
@@ -68,8 +69,11 @@ export const Chart = () => {
 
 
     const clicksAv = arrayValues.map(f => meanBy(f, "Clicks"));
-    const impressionsAv = arrayValues.map(f => meanBy(f, "Impressions"))
+    const impressionsAv = arrayValues.map(f => meanBy(f, "Impressions"));
 
+    console.log(labels);
+    console.log(clicksAv);
+    console.log(impressionsAv);
 
 
 

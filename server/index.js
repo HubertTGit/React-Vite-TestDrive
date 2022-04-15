@@ -25,10 +25,8 @@ app.get('/', async (req, res) => {
         return true
 
     });
-
-    console.log(req.query)
     // Limit to 1000
-    res.send(data.slice(0, limit));
+    res.send(data.splice(0, limit));
 });
 
 // get list of available datasources
