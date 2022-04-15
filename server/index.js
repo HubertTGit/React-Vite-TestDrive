@@ -16,7 +16,7 @@ app.get('', async (req, res) => {
     const limited = data.slice(0, 100);
 
     // Limit to 1000
-    res.send(data.slice(0, 120));
+    res.send(data.slice(0, 500));
 
 });
 

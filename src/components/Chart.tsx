@@ -13,6 +13,7 @@ import { Line } from 'react-chartjs-2';
 import { IData } from '../interfaces/data.model';
 import { generateRandomNumbers } from './../utilities/utility';
 import { groupBy, values, meanBy } from 'lodash';
+import * as dayJs from "dayjs";
 
 ChartJS.register(
     CategoryScale,
@@ -63,17 +64,13 @@ export const Chart = () => {
     };
 
     const grouped = groupBy(datas, 'Date');
-    const labels = Object.keys(grouped);
-    const toArray = values(grouped);
+    const labels = Object.keys(grouped) as string[];
+    const arrayValues = values(grouped);
+    // const formattedDates = labels.map(d => dayJs(d).format('D MMM YYYY'))
 
 
-
-    // put this to utility
-    // const clicks = grouped[labels[0]].map(f => { console.log(f) });
-    // // const impressions = grouped[labels[0]].flatMap(h => [h.Impressions]);
-
-    const clicksAv = toArray.map(f => meanBy(f, "Clicks"));
-    const impressionsAv = toArray.map(f => meanBy(f, "Impressions"))
+    const clicksAv = arrayValues.map(f => meanBy(f, "Clicks"));
+    const impressionsAv = arrayValues.map(f => meanBy(f, "Impressions"))
 
 
 
