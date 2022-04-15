@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IData } from './interfaces/data.model'
 
 function App() {
@@ -16,32 +16,23 @@ function App() {
 }
 
 function SearchBar() {
-  const [animal, setAnimal] = useState<IData[]>([]);
 
-  const search = async (val: string) => {
+  const { fetchedDatas, search } = useDataSearch();
 
-    try {
-      const reponse = await fetch("http://localhost:8080?" + new URLSearchParams({ q: val }));
-      const data: IData[] = await reponse.json();
-
-      setAnimal(data);
-    } catch (error) {
-      console.error("ERROR fetching data", error);
-    }
-  }
 
   return (
 
     <div>
-      <input className='border' type="text" onChange={(e) => search(e.target.value)} placeholder="Search campaign.." /> <label>{animal.length} results</label>
+
+      <input className='border' type="text" onChange={(e) => search(e.target.value)} placeholder="Search campaign.." /> <label>{fetchedDatas.length} results</label>
 
 
       <ul>
-        {animal.map((datas, index) => (
+        {fetchedDatas.map((datas, index) => (
           <Result key={index} {...datas} />
         ))}
 
-        {animal.length === 0 && 'no result'}
+        {fetchedDatas.length === 0 && 'no result'}
       </ul>
     </div>
   )
@@ -53,6 +44,31 @@ function Result({ Date, Datasource, Campaign, Impressions }: IData) {
       <strong>{Date}</strong> {Datasource} {Campaign} {Impressions}
     </li>
   );
+}
+
+function useDataSearch() {
+  const [fetchedDatas, setfetchedData] = useState<IData[]>([]);
+
+  useEffect(() => {
+    const lastQuery = localStorage.getItem('lastQuery') || '';
+    search(lastQuery)
+  }, []);
+
+  const search = async (q: string) => {
+
+    try {
+      const reponse = await fetch("http://localhost:8080?" + new URLSearchParams({ q }));
+      const data: IData[] = await reponse.json();
+
+      setfetchedData(data);
+      localStorage.setItem('lastQuery', q);
+    } catch (error) {
+      console.error("ERROR fetching data", error);
+    }
+  }
+
+  return { fetchedDatas, search }
+
 }
 
 export default App
