@@ -18,7 +18,7 @@ export const CampaignSelect = ({ onChangeHandler }: { onChangeHandler: React.Cha
         <div className=" border-2 border-cyan-700">
             <label htmlFor="cmpList">Choose campain:</label>
             <select id="cmpList" onChange={onChangeHandler}>
-                <option value={undefined} key="none">all</option>
+                <option value={undefined} key="none">All</option>
                 {campaignList?.map((f, i) => (
                     <option value={f} key={i}>{f}</option>
                 ))}

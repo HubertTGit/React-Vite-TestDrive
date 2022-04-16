@@ -30,7 +30,7 @@ const options = {
             position: 'top' as const,
         },
         title: {
-            display: true,
+            display: false,
             text: 'Data ETL-V',
         },
     },
@@ -38,7 +38,7 @@ const options = {
 
 
 // TODO: cast the correct model
-export const Chart = ({ metrics }: { metrics: IData[] | undefined }) => {
+export const Chart = ({ metrics, campaign, datasource }: { metrics: IData[] | undefined, campaign: string, datastore: string }) => {
 
     const labels = generateLabels(metrics);
     const clicksAv = generateClicksAverageValue(metrics);
@@ -67,6 +67,8 @@ export const Chart = ({ metrics }: { metrics: IData[] | undefined }) => {
 
     return (
         <div className="w-2/3 flex-auto border">
+            <h2>Datasources: {datasource}</h2>
+            <h2>Campaign: {campaign}</h2>
             <Line options={options} data={data} />
         </div>
     )

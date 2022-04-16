@@ -1,7 +1,7 @@
 import { IData } from "../interfaces/data.model";
 
 // the main data default of 1000 items
-export const getMetrics = async (datasource = '', campaign = '', limit = '3000',) => {
+export const getMetrics = async (datasource = '', campaign = '', limit = '5000',) => {
     try {
         const response = await fetch(
             'http://localhost:8080?' + new URLSearchParams({ limit, datasource, campaign })
