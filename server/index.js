@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import csvtojson from 'csvtojson';
 import _ from 'lodash';
+
 // Initialize the express app
 const app = express();
 app.use(cors());
@@ -11,13 +12,12 @@ app.use(express.json());
 // Endpoint for the data with filtering
 app.get('/', async (req, res) => {
     const converted = await csvtojson().fromFile('data.csv');
-    const limit = +req.query.limit;
     const datasource = req.query.datasource || undefined;
-    const campaign = req.query.campaign || undefined;
+    const campaign = req.query.campaign || 'All';
 
-
-    converted.splice(0, limit)
     let data = [];
+
+    // first filter datasource
     if (datasource) {
         const dataSourceArray = datasource.split(",");
         for (let i = 0; i < dataSourceArray.length; i++) {
@@ -28,11 +28,10 @@ app.get('/', async (req, res) => {
         data = converted;
     }
 
+    // second filter campaign
     if (campaign !== 'All') {
         data = data.filter(c => c.Campaign.includes(campaign));
     }
-
-
 
     // Limit data
     res.send(data);
