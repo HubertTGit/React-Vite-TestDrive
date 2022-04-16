@@ -66,7 +66,7 @@ export const Chart = ({ metrics, campaign, datasource, count }: { metrics: IData
 
     return (
         <div className="w-2/3 flex-auto border">
-            <h2>Datasources: {datasource}</h2>
+            <h2>Datasources: {datasource ? datasource : 'All'}</h2>
             <h2>Campaign: {campaign}</h2>
             <p>Reecords: {count}</p>
             <Line options={options} data={data} />

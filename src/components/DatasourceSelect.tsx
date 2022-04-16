@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getDatasourceList } from "../services/api";
 
-export const DatasourceSelect = ({ onChangeHandler }: { onChangeHandler: React.ChangeEventHandler }) => {
+export const DatasourceSelect = ({ onChangeHandler, onResetHandler }: { onChangeHandler: React.ChangeEventHandler, onResetHandler: React.MouseEventHandler }) => {
     const [sourceList, setSourceList] = useState<string[] | undefined>([]);
 
     const selectEl = useRef(null);
@@ -29,7 +29,10 @@ export const DatasourceSelect = ({ onChangeHandler }: { onChangeHandler: React.C
                     <option value={f} key={i}>{f}</option>
                 ))}
             </select>
-            <button onClick={reset}>reset</button>
+            <button onClick={(e) => {
+                onResetHandler(e);
+                reset();
+            }}>reset</button>
         </div>
     );
 }
