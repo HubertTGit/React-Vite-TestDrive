@@ -11,12 +11,16 @@ app.use(express.json());
 // Endpoint for the data with filtering
 app.get('/', async (req, res) => {
     const converted = await csvtojson().fromFile('data.csv');
-    const limit = +req.query.limit || 1000;
+    const limit = +req.query.limit;
     const datasource = req.query.datasource?.toLowerCase() || undefined;
     const campaign = req.query.campaign?.toLowerCase() || undefined;
 
     console.log(datasource, campaign, limit);
     const data = converted.filter(d => {
+        if (campaign === 'all' && datasource === 'all') {
+            return true;
+        }
+
         if (campaign || datasource) {
             return d.Campaign.toLowerCase().includes(campaign) || d.Datasource.toLowerCase().includes(datasource)
         }

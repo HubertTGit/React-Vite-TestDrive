@@ -10,13 +10,15 @@ function App() {
   const [metrics, setData] = useState<IData[] | undefined>([]);
   const [campaign, setCampaign] = useState<string>("All");
   const [datasource, setDataSource] = useState<string>("All");
+  const [count, setCount] = useState<number>();
 
   useEffect(() => {
     getDatas();
   }, []);
 
   const getDatas = async () => {
-    const response = await getMetrics(datasource, campaign)
+    const response = await getMetrics(datasource, campaign);
+    setCount(response?.length);
     setData(response);
   };
 
@@ -40,7 +42,7 @@ function App() {
           <DatasourceSelect onChangeHandler={dSHandleSelection} />
           <CampaignSelect onChangeHandler={cHandleSelection} />
         </Filter>
-        <Chart metrics={metrics} campaign={campaign} datasource={datasource} />
+        <Chart metrics={metrics} campaign={campaign} datasource={datasource} count={count} />
 
       </div>
     </main>
