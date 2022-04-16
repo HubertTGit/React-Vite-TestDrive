@@ -9,6 +9,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { IData } from '../interfaces/data.model';
 import { generateLabels, generateClicksAverageValue, generateImpressionsAverageValue } from "./../services/utility"
 
 ChartJS.register(
@@ -37,7 +38,7 @@ const options = {
 
 
 // TODO: cast the correct model
-export const Chart = ({ metrics }) => {
+export const Chart = ({ metrics }: { metrics: IData[] | undefined }) => {
 
     const labels = generateLabels(metrics);
     const clicksAv = generateClicksAverageValue(metrics);

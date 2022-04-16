@@ -14,6 +14,8 @@ app.get('/', async (req, res) => {
     const limit = +req.query.limit || 1000;
     const datasource = req.query.datasource?.toLowerCase() || undefined;
     const campaign = req.query.campaign?.toLowerCase() || undefined;
+
+    console.log(datasource, campaign, limit);
     const data = converted.filter(d => {
         if (campaign || datasource) {
             return d.Campaign.toLowerCase().includes(campaign) || d.Datasource.toLowerCase().includes(datasource)
@@ -22,6 +24,7 @@ app.get('/', async (req, res) => {
         if (campaign && datasource) {
             return d.Campaign.toLowerCase().includes(campaign) && d.Datasource.toLowerCase().includes(datasource)
         }
+
         return true
 
     });

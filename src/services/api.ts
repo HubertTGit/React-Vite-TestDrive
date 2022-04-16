@@ -1,7 +1,7 @@
 import { IData } from "../interfaces/data.model";
 
 // the main data default of 1000 items
-export const getMetrics = async (limit = "1000", datasource: string, campaign: string) => {
+export const getMetrics = async (datasource = '', campaign = '', limit = '3000',) => {
     try {
         const response = await fetch(
             'http://localhost:8080?' + new URLSearchParams({ limit, datasource, campaign })
@@ -25,7 +25,8 @@ export const getDatasourceList = async () => {
         const response = await fetch(
             'http://localhost:8080/datasource'
         );
-        return response;
+        const list: string[] = await response.json();
+        return list;
     } catch (error) {
         console.error("ERROR fetching data", error)
     }
@@ -38,7 +39,8 @@ export const getCampainList = async () => {
         const response = await fetch(
             'http://localhost:8080/campaign'
         );
-        return response;
+        const list: string[] = await response.json();
+        return list;
     } catch (error) {
         console.error("ERROR fetching data", error)
     }
