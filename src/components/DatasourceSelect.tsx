@@ -18,7 +18,6 @@ export const DatasourceSelect = ({ onChangeHandler }: { onChangeHandler: React.C
         <div className=" border-2 border-emerald-600">
             <label htmlFor="srclist">Choose a Datasource:</label>
             <select multiple id="srcList" onChange={onChangeHandler}>
-                <option value={undefined} key="all">All</option>
                 {sourceList?.map((f, i) => (
                     <option value={f} key={i}>{f}</option>
                 ))}

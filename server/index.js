@@ -26,18 +26,11 @@ app.get('/', async (req, res) => {
         }
     } else {
         data = converted;
-
     }
 
-
-    // if (!datasource) {
-
-    // } else {
-    //     for (let i = 0; i < dataSourceArray.length; i++) {
-    //         console.log(dataSourceArray[i]);
-    //         console.log(converted.filter(d => d.Campaign.includes(dataSourceArray[i])));
-    //     }
-    // }
+    if (campaign !== 'All') {
+        data = data.filter(c => c.Campaign.includes(campaign));
+    }
 
 
 

@@ -37,8 +37,7 @@ const options = {
 };
 
 
-// TODO: cast the correct model
-export const Chart = ({ metrics, campaign, datasource, count }: { metrics: IData[] | undefined, campaign: string, datasource: string, count: number }) => {
+export const Chart = ({ metrics, campaign, datasource, count }: { metrics: IData[] | undefined, campaign: string | undefined, datasource: string | undefined, count: number }) => {
 
     const labels = generateLabels(metrics);
     const clicksAv = generateClicksAverageValue(metrics);

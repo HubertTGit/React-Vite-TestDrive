@@ -9,7 +9,7 @@ import { getMetrics } from './services/api'
 function App() {
   const [metrics, setData] = useState<IData[] | undefined>([]);
   const [campaign, setCampaign] = useState<string>("All");
-  const [datasource, setDataSource] = useState<string>("All");
+  const [datasource, setDataSource] = useState<string>();
   const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
