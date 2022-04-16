@@ -26,12 +26,12 @@ function App() {
     setData(response);
   };
 
-  const cHandleSelection = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const campaignHandleSelection = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const _campaign = e.target.value;
     setCampaign(_campaign);
   }
 
-  const dSHandleSelection = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const datasourceHandleSelection = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const options = e.target.options;
     const selection = [...options].filter(i => i.selected).map(o => o.value);
     setDataSource(selection.toString());
@@ -41,8 +41,8 @@ function App() {
     <main className='grid place-items-center'>
       <div className='flex items-center justify-center container h-screen border-blue-900 border-1'>
         <Filter>
-          <DatasourceSelect onChangeHandler={dSHandleSelection} />
-          <CampaignSelect onChangeHandler={cHandleSelection} />
+          <DatasourceSelect onChangeHandler={datasourceHandleSelection} />
+          <CampaignSelect onChangeHandler={campaignHandleSelection} />
         </Filter>
         <Chart metrics={metrics} campaign={campaign} datasource={datasource} count={count} />
 

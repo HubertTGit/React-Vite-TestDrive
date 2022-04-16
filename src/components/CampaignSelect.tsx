@@ -23,7 +23,6 @@ export const CampaignSelect = ({ onChangeHandler }: { onChangeHandler: React.Cha
                     <option value={f} key={i}>{f}</option>
                 ))}
             </select>
-            <button>reset</button>
         </div>
     );
 }
