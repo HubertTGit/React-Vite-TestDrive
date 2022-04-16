@@ -12,28 +12,37 @@ app.use(express.json());
 app.get('/', async (req, res) => {
     const converted = await csvtojson().fromFile('data.csv');
     const limit = +req.query.limit;
-    const datasource = req.query.datasource?.toLowerCase() || undefined;
-    const campaign = req.query.campaign?.toLowerCase() || undefined;
+    const datasource = req.query.datasource || undefined;
+    const campaign = req.query.campaign || undefined;
 
-    console.log(datasource, campaign, limit);
-    const data = converted.filter(d => {
-        if (campaign === 'all' && datasource === 'all') {
-            return true;
+
+    converted.splice(0, limit)
+    let data = [];
+    if (datasource) {
+        const dataSourceArray = datasource.split(",");
+        for (let i = 0; i < dataSourceArray.length; i++) {
+            const j = converted.filter(d => d.Datasource.includes(dataSourceArray[i]));
+            data = [...data, ...j]
         }
+    } else {
+        data = converted;
 
-        if (campaign || datasource) {
-            return d.Campaign.toLowerCase().includes(campaign) || d.Datasource.toLowerCase().includes(datasource)
-        }
+    }
 
-        if (campaign && datasource) {
-            return d.Campaign.toLowerCase().includes(campaign) && d.Datasource.toLowerCase().includes(datasource)
-        }
 
-        return true
+    // if (!datasource) {
 
-    });
-    // Limit to 1000
-    res.send(data.splice(0, limit));
+    // } else {
+    //     for (let i = 0; i < dataSourceArray.length; i++) {
+    //         console.log(dataSourceArray[i]);
+    //         console.log(converted.filter(d => d.Campaign.includes(dataSourceArray[i])));
+    //     }
+    // }
+
+
+
+    // Limit data
+    res.send(data);
 });
 
 // get list of available datasources

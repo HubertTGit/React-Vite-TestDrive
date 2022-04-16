@@ -10,29 +10,31 @@ function App() {
   const [metrics, setData] = useState<IData[] | undefined>([]);
   const [campaign, setCampaign] = useState<string>("All");
   const [datasource, setDataSource] = useState<string>("All");
-  const [count, setCount] = useState<number>();
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     getDatas();
   }, []);
 
+  useEffect(() => {
+    getDatas();
+  }, [campaign, datasource])
+
   const getDatas = async () => {
     const response = await getMetrics(datasource, campaign);
-    setCount(response?.length);
+    setCount(response?.length!);
     setData(response);
   };
 
-  const cHandleSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const cHandleSelection = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const _campaign = e.target.value;
     setCampaign(_campaign);
-    getDatas()
   }
 
-  const dSHandleSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const dSHandleSelection = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const options = e.target.options;
     const selection = [...options].filter(i => i.selected).map(o => o.value);
     setDataSource(selection.toString());
-    getDatas()
   }
 
   return (
