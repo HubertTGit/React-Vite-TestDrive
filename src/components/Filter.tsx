@@ -4,7 +4,7 @@ type BoxProps = {
 };
 export const Filter = (props: BoxProps) => {
     return (
-        <div className="w-1/4 py-5 pl-5 text-xs">
+        <div className="w-1/4 py-5 pl-5 text-xs sm:block hidden">
             <h3 className=" text-sm font-semibold">Filter</h3>
             {props.children}
         </div>
