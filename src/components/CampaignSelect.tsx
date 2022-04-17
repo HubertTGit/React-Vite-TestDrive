@@ -19,7 +19,7 @@ export const CampaignSelect = ({ onChangeHandler, onResetHandler }: { onChangeHa
     };
 
     return (
-        <div className=" pt-5">
+        <div className="md:pt-5 md:w-full w-1/2">
             <label htmlFor="cmpList" className="block pb-1">Select Campaign:</label>
             <div className="flex items-center">
                 <select ref={selectEl} id="cmpList" onChange={onChangeHandler} className=' w-full rounded-md p-1 dark:text-black'>

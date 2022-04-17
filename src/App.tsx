@@ -62,7 +62,7 @@ function App() {
   return (
     <div className='font-mono h-screen bg-slate-200 dark:bg-slate-700 dark:text-white'>
       <Header onToggleHandler={toggleModeHandler} mode={mode}></Header>
-      <main className='flex'>
+      <main className='flex md:flex-row flex-col'>
         <Filter>
           <DatasourceSelect onChangeHandler={datasourceSelectionHandler} onResetHandler={datasourceResetHandler} />
           <CampaignSelect onChangeHandler={campaignSelectionHandler} onResetHandler={campaignResetHandler} />

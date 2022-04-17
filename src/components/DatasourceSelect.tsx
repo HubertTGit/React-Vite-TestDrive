@@ -17,8 +17,8 @@ export const DatasourceSelect = ({ onChangeHandler, onResetHandler }: { onChange
 
 
     return (
-        <div className="pt-3">
-            <label htmlFor="srclist" className="block pb-1">Select a Datasource(s):</label>
+        <div className="md:pt-3 md:w-full w-1/2">
+            <label htmlFor="srclist" className="block pb-1">Select Datasource(s):</label>
             <div className="flex items-end">
                 <select ref={selectEl} multiple id="srcList" onChange={onChangeHandler} className="p-1 rounded-md w-full text-sm dark:text-black">
                     {sourceList?.map((f, i) => (

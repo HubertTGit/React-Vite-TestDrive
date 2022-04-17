@@ -65,7 +65,7 @@ export const Chart = ({ metrics, campaign, datasource, count }: { metrics: IData
 
 
     return (
-        <div className="flex-auto w-3/4 p-5">
+        <div className="flex-auto  p-5 md:w-3/4 w-full">
             <div className=' flex justify-between text-xs pb-3'>
                 <div className='w-1/3'><span className=' font-semibold'>Datasource(s):</span>  {datasource ? datasource : 'All'}</div>
                 <div className='w-1/3 text-center'><span className=' font-semibold'>Campaign:</span> {campaign}</div>
