@@ -8,7 +8,7 @@ export const Header = ({ onToggleHandler, mode }: { onToggleHandler: React.Mouse
 
                 {
                     mode ?
-                        <svg viewBox="0 0 512 512" className="h-5 w-5 fill-white">
+                        <svg viewBox="0 0 512 512" className="h-5 w-5 fill-yellow-400">
                             <g>
                                 <g>
                                     <path d="m256,105.5c-83.9,0-152.2,68.3-152.2,152.2 0,83.9 68.3,152.2 152.2,152.2 83.9,0 152.2-68.3 152.2-152.2 0-84-68.3-152.2-152.2-152.2zm0,263.5c-61.4,0-111.4-50-111.4-111.4 0-61.4 50-111.4 111.4-111.4 61.4,0 111.4,50 111.4,111.4 0,61.4-50,111.4-111.4,111.4z" />
