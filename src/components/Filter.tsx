@@ -6,7 +6,7 @@ export const Filter = (props: BoxProps) => {
 
 
     return (
-        <div className=" w-1/3 flex-auto border border-red-300">
+        <div className="shrink-0">
             <h3>Filter</h3>
             {props.children}
         </div>

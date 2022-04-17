@@ -3,6 +3,7 @@ import { CampaignSelect } from './components/CampaignSelect'
 import { Chart } from './components/Chart'
 import { DatasourceSelect } from './components/DatasourceSelect'
 import { Filter } from './components/Filter'
+import { Header } from './components/Header'
 import { IData } from './interfaces/data.model'
 import { getMetrics } from './services/api'
 
@@ -11,6 +12,7 @@ function App() {
   const [campaign, setCampaign] = useState<string>("All");
   const [datasource, setDataSource] = useState<string>();
   const [count, setCount] = useState<number>(0);
+  const [mode, setMode] = useState<boolean>(false);
 
   useEffect(() => {
     getDatas();
@@ -18,7 +20,15 @@ function App() {
 
   useEffect(() => {
     getDatas();
-  }, [campaign, datasource])
+  }, [campaign, datasource]);
+
+  useEffect(() => {
+    if (mode) {
+      document.querySelector('html')?.classList.add('dark');
+    } else {
+      document.querySelector('html')?.classList.remove('dark');
+    }
+  }, [mode])
 
   const getDatas = async () => {
     const response = await getMetrics(datasource, campaign);
@@ -41,17 +51,21 @@ function App() {
     setDataSource(undefined);
   }
 
+  const toggleModeHandler = () => {
+    setMode(!mode);
+  }
+
   return (
-    <main className='grid place-items-center'>
-      <div className='flex items-center justify-center container h-screen border-blue-900 border-1'>
+    <div>
+      <Header onToggleHandler={toggleModeHandler} mode={mode}></Header>
+      <main className='container mx-auto flex'>
         <Filter>
           <DatasourceSelect onChangeHandler={datasourceSelectionHandler} onResetHandler={datasourceResetHandler} />
           <CampaignSelect onChangeHandler={campaignSelectionHandler} />
         </Filter>
         <Chart metrics={metrics} campaign={campaign} datasource={datasource} count={count} />
-
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }
 
