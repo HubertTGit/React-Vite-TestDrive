@@ -51,6 +51,10 @@ function App() {
     setDataSource(undefined);
   }
 
+  const campaignResetHandler = () => {
+    setCampaign('All');
+  }
+
   const toggleModeHandler = () => {
     setMode(!mode);
   }
@@ -61,7 +65,7 @@ function App() {
       <main className='flex'>
         <Filter>
           <DatasourceSelect onChangeHandler={datasourceSelectionHandler} onResetHandler={datasourceResetHandler} />
-          <CampaignSelect onChangeHandler={campaignSelectionHandler} />
+          <CampaignSelect onChangeHandler={campaignSelectionHandler} onResetHandler={campaignResetHandler} />
         </Filter>
         <Chart metrics={metrics} campaign={campaign} datasource={datasource} count={count} />
       </main>

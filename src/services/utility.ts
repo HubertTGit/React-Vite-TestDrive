@@ -24,6 +24,16 @@ export const generateImpressionsAverageValue = (metrics: IData[] | undefined) =>
     return arrayValues.map(f => Math.round(meanBy(f, "Impressions")));
 }
 
+export const resetSelection = (s: React.MutableRefObject<null>, type: 'ds' | 'c') => {
+    const current = s.current as any;
+    if (type === 'ds') {
+        current.selectedIndex = -1;
+    } else {
+        current.selectedIndex = 0;
+    }
+
+}
+
 
 
 
