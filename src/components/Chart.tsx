@@ -27,7 +27,7 @@ const options = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'top' as const,
+            position: 'bottom' as const,
         },
         title: {
             display: false,
@@ -65,10 +65,12 @@ export const Chart = ({ metrics, campaign, datasource, count }: { metrics: IData
 
 
     return (
-        <div className="w-2/3 flex-auto border">
-            <h2>Datasources: {datasource ? datasource : 'All'}</h2>
-            <h2>Campaign: {campaign}</h2>
-            <p>Reecords: {count}</p>
+        <div className="flex-auto w-3/4 p-5">
+            <div className=' flex justify-between text-xs'>
+                <div><span className=' font-semibold'>Datasource(s):</span>  {datasource ? datasource : 'All'}</div>
+                <div><span className=' font-semibold'>Campaign:</span>{campaign}</div>
+                <div><span className=' font-semibold'>Records:</span>{count}</div>
+            </div>
             <Line options={options} data={data} />
         </div>
     )

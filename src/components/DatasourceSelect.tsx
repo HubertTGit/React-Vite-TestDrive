@@ -17,14 +17,13 @@ export const DatasourceSelect = ({ onChangeHandler, onResetHandler }: { onChange
     const reset = () => {
         const current = selectEl.current as any;
         current.selectedIndex = -1;
-
     }
 
 
     return (
-        <div className=" border-2 border-emerald-600">
-            <label htmlFor="srclist">Choose a Datasource:</label>
-            <select ref={selectEl} multiple id="srcList" onChange={onChangeHandler}>
+        <div className="pt-5">
+            <label htmlFor="srclist" className="block pb-1">Select a Datasource(s):</label>
+            <select ref={selectEl} multiple id="srcList" onChange={onChangeHandler} className="text-sm">
                 {sourceList?.map((f, i) => (
                     <option value={f} key={i}>{f}</option>
                 ))}
