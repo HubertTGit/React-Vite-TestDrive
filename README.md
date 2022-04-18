@@ -1,9 +1,11 @@
 # Data ETL-V simple metrics dashboard
+![This is an image](https://user-images.githubusercontent.com/98665493/163761215-f72793c7-9249-4157-ace1-6bb389a2c8a0.png)
 
 This example demonstrates:
 - Basic API endpoints to send data based on a .csv file (vanilla JS)
 - Data filtering for datasource and campaign (or combined)
 - Frontend application built in React (Typescript)
+- Minimal use of UI library (basic html elements)
 - State management using React hooks
 - Development environment using Vitejs (HMR)
 - Data visualization using chartjs
