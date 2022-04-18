@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
     let data = [];
 
     // first filter datasource
-    if (datasource) {
+    if (datasource && typeof datasource === "string") {
         const dataSourceArray = datasource.split(",");
         for (let i = 0; i < dataSourceArray.length; i++) {
             const j = converted.filter(d => d.Datasource.includes(dataSourceArray[i]));
