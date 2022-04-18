@@ -19,6 +19,8 @@ To run the application, you will need to run both the API and Frontend simultine
 
 ## Backend
 
+IMPORTANT: You will need to have latest version of Node.js (min V14.+)
+
 Starting from the `root` folder, navigate to the `server` folder
 ```
 cd server
