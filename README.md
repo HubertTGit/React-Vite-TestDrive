@@ -1,4 +1,4 @@
-# Data ETL-V simple metrics dashboard
+# Simple Data ETL-V metrics dashboard
 ![This is an image](https://user-images.githubusercontent.com/98665493/163761215-f72793c7-9249-4157-ace1-6bb389a2c8a0.png)
 
 This example demonstrates:
