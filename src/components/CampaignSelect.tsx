@@ -6,13 +6,14 @@ import { resetSelection } from "../services/utility";
 export const CampaignSelect = ({ onChangeHandler, onResetHandler }: { onChangeHandler: React.ChangeEventHandler, onResetHandler: React.MouseEventHandler }) => {
 
     const [campaignList, setCampaignList] = useState<string[] | undefined>([]);
-
     const selectEl = useRef(null);
 
+    // Use effect for campain on component mount only.
     useEffect(() => {
         campaignSource();
     }, []);
 
+    // Gets a list of all campaigns.
     const campaignSource = async () => {
         const response = await getCampainList();
         setCampaignList(response);

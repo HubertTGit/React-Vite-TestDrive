@@ -1,6 +1,6 @@
 import { IData } from "../interfaces/data.model";
 
-// the main data default of 1000 items
+// main data data fetch with filtering of datasource and campaign
 export const getMetrics = async (datasource = '', campaign = '',) => {
     try {
         const response = await fetch(
@@ -19,7 +19,7 @@ export const getMetrics = async (datasource = '', campaign = '',) => {
     }
 }
 
-// list of available datasources
+// list of datasources for selection
 export const getDatasourceList = async () => {
     try {
         const response = await fetch(
@@ -33,7 +33,7 @@ export const getDatasourceList = async () => {
 }
 
 
-// list of available campaigns
+// list of campaigns for selection
 export const getCampainList = async () => {
     try {
         const response = await fetch(

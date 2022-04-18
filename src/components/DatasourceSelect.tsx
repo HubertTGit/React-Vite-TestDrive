@@ -4,12 +4,14 @@ import { resetSelection } from "../services/utility";
 
 export const DatasourceSelect = ({ onChangeHandler, onResetHandler }: { onChangeHandler: React.ChangeEventHandler, onResetHandler: React.MouseEventHandler }) => {
     const [sourceList, setSourceList] = useState<string[] | undefined>([]);
-
     const selectEl = useRef(null);
+
+    // Use effect for the list on component load only.
     useEffect(() => {
         listSource();
     }, []);
 
+    // Returns a list of all available sources.
     const listSource = async () => {
         const response = await getDatasourceList();
         setSourceList(response);
