@@ -5,7 +5,7 @@ export const Header = ({ onToggleHandler, mode }: { onToggleHandler: React.Mouse
         <header className='p-5 bg-slate-300 dark:bg-slate-800 dark:text-white flex justify-between'>
             <div className="md:hidden block" ></div>
             <h1>Advertising Data ETV-L</h1>
-            <button onClick={onToggleHandler}>
+            <button onClick={onToggleHandler} className="hover:opacity-50">
                 {
                     mode ?
                         <svg viewBox="0 0 512 512" className="h-5 w-5 fill-yellow-400">
