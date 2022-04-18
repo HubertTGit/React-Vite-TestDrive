@@ -27,9 +27,13 @@ install dependancies
 ```
 npm i
 ```
-run the API
+build the API
 ```
-node .
+npm run build
+```
+launch API server
+```
+npm run server
 ```
 API is running on `http://localhost:8080/`
 
